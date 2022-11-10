@@ -1,0 +1,283 @@
+$large: "( max-width : 1599px )"; // 1600보다 작은 크기
+$large-semi: "( max-width: 1199px )"; // 1200보다 작은 크기
+$medium: "( max-width: 899px )"; // 태블릿
+$small: "( max-width: 767px )"; // 아이패드보다 작은 사이즈
+$mobile: "( max-width: 539px)"; // 모바일
+$gradient: linear-gradient(45deg, aqua, Royalblue);
+
+@mixin space() {
+  display: block;
+  content: "";
+}
+
+body {
+  font : {
+    font-family: Arial, Helvetica, sans-serif;
+    size: 10px;
+  }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 100%;
+  background-image: linear-gradient(45deg, #02e2ac, #0043c1);
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-150%);
+    color: #fff;
+    letter-spacing: 0.028em;
+    transition: 0.5s;
+    font: {
+      family: "Sonsie One", cursive;
+      size: 4em;
+    }
+    &::after {
+      @include space;
+      width: 110px;
+      height: 2px;
+      background: #fff;
+      opacity: 0.7;
+    }
+    &::before {
+      @include space;
+      position: absolute;
+      bottom: -1.5em;
+      content: "FRONTEND GALLERY";
+      font : {
+        family: Arial, Helvetica, sans-serif;
+        size: 0.35em;
+        weight: 100;
+      }
+      opacity: 0.7;
+    }
+    @media #{$large} {
+      left: 30px;
+    }
+    @media #{$large-semi} {
+      // 1200보다 작아졌을 때
+      transform: translateY(-50%);
+      font-size: 2.5em;
+      &::after {
+        width: 140px;
+      }
+      &::before {
+        display: none;
+      }
+    }
+    @media #{$mobile} {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2em;
+      &::after {
+        width: 28px;
+      }
+    }
+  }
+
+  .sns {
+    position: absolute;
+    bottom: 100px;
+    right: 5em;
+    transition: 0.5s;
+    li {
+      float: left;
+      margin: 0 1em;
+      a {
+        color: #fff;
+        font-size: 1.3em;
+
+        i {
+          font-size: 1.3em;
+
+          @media #{$medium} {
+            font-size: 2em;
+          }
+        }
+      }
+    }
+    span {
+      @media #{$medium} {
+        display: none;
+      }
+    }
+
+    @media #{$large-semi} {
+      bottom: 30px;
+      right: 1em;
+    }
+    @media #{$mobile} {
+      display: none;
+    }
+  } // sns end
+
+  @media #{$large} {
+    // 1600보다 작아졌을 때
+    width: 350px;
+  }
+
+  @media #{$large-semi} {
+    // 1200보다 작아졌을 때
+    width: 100%;
+    position: relative;
+    height: 80px;
+  }
+}
+
+main {
+  margin-left: 400px;
+  padding: 20px;
+
+  @media #{$large} {
+    margin-left: 350px;
+  }
+
+  @media #{$large-semi} {
+    // 1200보다 작아졌을 때
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+nav {
+  margin-bottom: 25px;
+
+  .btn {
+  }
+
+  li {
+    float: right;
+    width: 100px;
+    height: 25px;
+    margin-left: 20px;
+
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      font: {
+        font-family: Arial, Helvetica, sans-serif;
+        size: 1em;
+        weight: bold;
+      }
+      color: #999;
+      text-align: center;
+      line-height: 25px;
+      letter-spacing: 0.1em;
+
+      &:hover {
+        background: $gradient;
+        color: #fff;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      }
+    }
+
+    @media #{$mobile} {
+      width: 33.33%;
+      margin-left: 0;
+      text-align: center;
+      a {
+        width: 90%;
+      }
+    }
+
+    &.on a {
+      background: $gradient;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+  }
+}
+
+article {
+  width: 20%;
+  float: left;
+  padding: 14px;
+  cursor: pointer;
+  div {
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+    padding: 14px;
+    border-radius: 5px;
+  }
+  img {
+    width: 100%;
+  }
+  h2 {
+    letter-spacing: 0.05em;
+    margin: 10px 0 5px;
+    color: #444;
+
+    font: {
+      family: "Sonsie One", cursive;
+      size: 1.5em;
+      weight: bold;
+    }
+  }
+  p {
+    font-size: 1.1em;
+    color: #777;
+  }
+
+  @media #{$large} {
+    width: 25%;
+  }
+  @media #{$medium} {
+    width: 33.33%;
+  }
+  @media #{$small} {
+    width: 50%;
+  }
+  @media #{$mobile} {
+    width: 100%;
+  }
+}
+
+#popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0 0 0 / 92%);
+  justify-content: center;
+  align-items: center;
+
+  div {
+    background: transparent;
+    padding: 50px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    box-shadow: 5px 5px 1px rgb(255 255 255 / 80%);
+    color: #ffffff;
+  }
+  img {
+    width: auto;
+    height: auto;
+    max-width: 80vw;
+    max-height: 60vh;
+  }
+  h2 {
+    font: {
+      family: "Sonsie One", cursive;
+      size: 1.5em;
+      weight: bold;
+    }
+    margin: 16px 0 5px;
+  }
+  p {
+    font-size: 1.1em;
+    color: #777;
+  }
+
+  &.on {
+    display: flex;
+  }
+}
